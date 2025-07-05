@@ -1,4 +1,21 @@
 // Variables globales
+const REPO_NAME = "materIAls3"; // ¡Cambia esto por el nombre de tu repositorio!
+const MODEL_URL = `/${REPO_NAME}/model/model.json`; // Ruta absoluta
+
+async function loadModel() {
+    try {
+        // Verifica que los archivos existan
+        const response = await fetch(MODEL_URL);
+        if (!response.ok) throw new Error("No se encontró model.json");
+        
+        // Carga el modelo
+        model = await tf.loadGraphModel(MODEL_URL);
+        console.log("Modelo cargado correctamente ✅");
+    } catch (err) {
+        console.error("Error:", err);
+        alert("Error al cargar el modelo. Verifica la consola (F12).");
+    }
+}
 let model;
 const MODEL_URL = './model/model.json'; // Ruta relativa para GitHub Pages
 
